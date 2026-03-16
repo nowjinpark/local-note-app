@@ -1,27 +1,31 @@
-# Note App
+# Local Note App
 
-로컬에 안전하게 저장되는 데스크톱 메모 앱입니다. Electron, React, TypeScript, SQLite를 사용해 만들었고, 카테고리/태그 기반 정리, 마크다운 작성, 첨부파일, 휴지통, 백업 기능까지 직접 연결한 개인 프로젝트입니다.
+**Language:** [English](#english) | [한국어](#korean)
 
-이 프로젝트는 바이브코딩으로 빠르게 출발한 뒤, 구조를 다듬고 공개용 저장소 기준에 맞게 정리한 앱이기도 합니다.
+---
 
-포트폴리오용으로 정리하면서 개인 노트 데이터, 로컬 로그, 실행 흔적 파일은 저장소에서 제외했습니다. 실제 메모 데이터는 Git 저장소가 아니라 Electron `userData` 경로에 저장됩니다.
+<a id="english"></a>
 
-## 핵심 기능
+## English
 
-- 마크다운 기반 노트 작성과 실시간 미리보기
-- 카테고리 트리와 태그를 활용한 정보 분류
-- 제목/본문 검색, 정렬, 고정 노트
-- 소프트 삭제 기반 휴지통과 복원
-- 노트 Markdown 내보내기
-- 첨부파일 업로드 및 이미지 미리보기
-- JSON/SQLite 백업 생성과 복원 UI
-- 라이트/다크 테마와 기본 단축키 지원
+A local-first desktop note app built with Electron, React, TypeScript, and SQLite. It started as a vibe-coded prototype and was later refined into a portfolio-ready project with clearer structure, safer local data handling, and cleaner repository hygiene.
 
-## 왜 만든 앱인가
+### Highlights
 
-메모 앱은 많지만, 개인적으로는 "클라우드 동기화보다 로컬 저장", "간단한 입력보다 구조화된 정리", "빠른 작성과 백업"이 더 중요했습니다. 그래서 메모를 단순 텍스트가 아니라 작은 개인 지식 저장소처럼 다룰 수 있는 데스크톱 앱을 목표로 구현했습니다.
+- Markdown note writing with live preview
+- Category tree and tag-based organization
+- Title/content search, sorting, and pinned notes
+- Soft-delete trash flow with restore
+- Markdown export for individual notes
+- File attachments with image preview support
+- JSON/SQLite backup and restore UI
+- Light/dark theme and keyboard shortcuts
 
-## 기술 스택
+### Why I Built It
+
+I wanted a note app that feels closer to a personal knowledge base than a simple memo pad. My priorities were local storage, structured organization, and practical backup support rather than cloud-first syncing.
+
+### Tech Stack
 
 - Electron
 - React 18
@@ -31,7 +35,94 @@
 - Electron Forge
 - `@uiw/react-md-editor`
 
-## 구조
+### Project Structure
+
+```text
+src/
+  main.ts                  Electron main process
+  preload.ts               Safe IPC bridge
+  renderer.tsx             React entry point
+  App.tsx                  Root app composition
+  components/              Sidebar, note list, editor, settings UI
+  database/                SQLite connection, migrations, backup, attachments
+  hooks/                   App-wide state management
+  shared/                  Shared types, IPC channels, theme definitions
+```
+
+### Local Data Policy
+
+- Real note data and attachments are stored outside the repository in Electron's `userData` directory.
+- Backup files are also created in the local app data folder.
+- Personal notes, backup files, logs, and helper execution files are excluded from Git.
+
+Windows example:
+
+```text
+%APPDATA%\note-app\
+```
+
+### Run Locally
+
+```bash
+npm install
+npm start
+```
+
+### Verification
+
+```bash
+npm run lint
+npm run package
+```
+
+### Portfolio Notes
+
+- Local-first architecture with source/data separation
+- Renderer-to-main IPC design instead of direct file system access
+- SQLite CRUD flow with schema migrations
+- End-to-end implementation of features people expect in a real note app
+
+### Possible Next Steps
+
+- Better search indexing
+- Customizable keyboard shortcuts
+- More advanced backup scheduling
+- Automated tests and release pipeline
+
+---
+
+<a id="korean"></a>
+
+## 한국어
+
+Electron, React, TypeScript, SQLite로 만든 로컬 퍼스트 데스크톱 노트 앱입니다. 처음에는 바이브코딩으로 빠르게 프로토타입을 만든 뒤, 구조를 다듬고 로컬 데이터 처리와 저장소 구성을 정리해 포트폴리오용 프로젝트로 발전시켰습니다.
+
+### 핵심 기능
+
+- 마크다운 기반 노트 작성과 실시간 미리보기
+- 카테고리 트리와 태그를 활용한 정보 분류
+- 제목/본문 검색, 정렬, 고정 노트
+- 소프트 삭제 기반 휴지통과 복원
+- 개별 노트 Markdown 내보내기
+- 첨부파일 업로드와 이미지 미리보기
+- JSON/SQLite 백업 및 복원 UI
+- 라이트/다크 테마와 단축키 지원
+
+### 왜 만들었는가
+
+단순 메모장이 아니라 개인 지식 저장소처럼 쓸 수 있는 앱을 만들고 싶었습니다. 특히 클라우드 동기화보다 로컬 저장, 빠른 입력보다 구조화된 정리, 그리고 실제로 쓸 수 있는 백업 기능을 더 중요하게 생각했습니다.
+
+### 기술 스택
+
+- Electron
+- React 18
+- TypeScript
+- SQLite (`better-sqlite3`)
+- Vite
+- Electron Forge
+- `@uiw/react-md-editor`
+
+### 프로젝트 구조
 
 ```text
 src/
@@ -45,42 +136,42 @@ src/
   shared/                  공통 타입, IPC 채널, 테마 정의
 ```
 
-## 로컬 데이터 정책
+### 로컬 데이터 정책
 
 - 실제 노트 데이터베이스와 첨부파일은 저장소 밖의 Electron `userData` 폴더에 저장됩니다.
 - 백업 파일도 동일한 로컬 앱 데이터 폴더에 생성됩니다.
-- Git 저장소에는 개인 노트 내용, 백업, 로그 파일, 임시 실행 파일을 포함하지 않습니다.
+- Git 저장소에는 개인 노트 내용, 백업 파일, 로그, 실행 보조 파일을 포함하지 않습니다.
 
-Windows 기준 예시 경로:
+Windows 예시 경로:
 
 ```text
 %APPDATA%\note-app\
 ```
 
-## 실행 방법
+### 실행 방법
 
 ```bash
 npm install
 npm start
 ```
 
-## 검증 및 빌드
+### 검증
 
 ```bash
 npm run lint
 npm run package
 ```
 
-## 포트폴리오 포인트
+### 포트폴리오 포인트
 
-- 로컬 퍼스트 아키텍처: 사용자 데이터와 소스 코드를 분리
-- Electron IPC 구조 설계: 렌더러에서 직접 파일 시스템에 접근하지 않도록 분리
-- SQLite 기반 CRUD와 마이그레이션 구성
-- 메모 앱에 필요한 실제 기능을 끝까지 연결한 점
+- 로컬 퍼스트 아키텍처와 소스 코드/사용자 데이터 분리
+- 렌더러가 직접 파일 시스템에 접근하지 않도록 분리한 IPC 구조
+- SQLite 기반 CRUD와 스키마 마이그레이션 구성
+- 실제 노트 앱에 필요한 기능을 끝까지 연결한 구현 경험
 
-## 앞으로 개선해볼 수 있는 부분
+### 이후 확장 아이디어
 
 - 검색 인덱싱 고도화
 - 단축키 커스터마이징
-- 자동 백업 스케줄링 고도화
+- 자동 백업 스케줄링 개선
 - 테스트 코드와 배포 파이프라인 추가
