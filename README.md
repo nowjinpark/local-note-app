@@ -10,6 +10,8 @@
 
 A local-first desktop note app built with Electron, React, TypeScript, and SQLite. It started as a vibe-coded prototype and was later refined into a portfolio-ready project with clearer structure, safer local data handling, and cleaner repository hygiene.
 
+> Current support: this repository is currently prepared and documented for Windows use.
+
 ### Highlights
 
 - Markdown note writing with live preview
@@ -96,6 +98,8 @@ npm run package
 ## 한국어
 
 Electron, React, TypeScript, SQLite로 만든 로컬 퍼스트 데스크톱 노트 앱입니다. 처음에는 바이브코딩으로 빠르게 프로토타입을 만든 뒤, 구조를 다듬고 로컬 데이터 처리와 저장소 구성을 정리해 포트폴리오용 프로젝트로 발전시켰습니다.
+
+> 현재 지원 범위: 이 저장소는 현재 Windows 사용 기준으로 정리되어 있습니다.
 
 ### 핵심 기능
 
